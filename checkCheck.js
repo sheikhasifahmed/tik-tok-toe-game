@@ -1,4 +1,6 @@
 const info = document.getElementById("info");
+const turnTag = document.getElementById("turn-tag");
+const playerTurn = document.getElementById("turn-player");
 const cells = document.querySelectorAll(".cell");
 let player = "X";
 let scoreMap = [1, "", "", "", "", "", "", "", "", ""];
@@ -20,6 +22,7 @@ cells.forEach((cell) =>
     let clickedCell = event.target;
     let index = clickedCell.getAttribute("index");
     if (clickedCell.innerText === "" && gameActive === true) {
+      if (player === "O") cell.style.color = "yellow";
       clickedCell.innerText = player;
       scoreMap[index] = player;
       checkWinner();
@@ -31,7 +34,11 @@ cells.forEach((cell) =>
 
 function playerChange() {
   player == "X" ? (player = "O") : (player = "X");
-  // info.innerText = `Now Player ${player} turn`;
+  if (gameActive === true) playerTurn.innerText = `Player ${player}`;
+  else {
+    turnTag.innerText = "";
+    playerTurn.innerText = "";
+  }
 }
 
 function checkWinner() {
@@ -43,8 +50,11 @@ function checkWinner() {
     if (a !== "" && b !== "" && c !== "") {
       if (a === b && b === c) {
         gameActive = false;
-        info.innerText = `Player ${player} is the winner`;
-        console.log(`Player ${player} is the winner`);
+        // info.style.color = "red";
+        info.innerText = `🎈Congrats! Player ${player} !🎈
+        You are the winner`;
+        info.style.color = "yellowgreen";
+
         break;
       }
     }
@@ -53,6 +63,19 @@ function checkWinner() {
 function checkdraw() {
   if (scoreMap.includes("") === false) {
     info.innerText = "The game has drawn";
-    console.log("The game has drawn");
+    gameActive = false;
   }
+}
+
+function reset() {
+  cells.forEach((cell) => {
+    cell.innerText = "";
+    cell.style.color = "orangered";
+  });
+  scoreMap = [1, "", "", "", "", "", "", "", "", ""];
+  gameActive = true;
+  info.innerText = "";
+  turnTag.innerText = "Turn for: ";
+  playerTurn.innerText = "Player X";
+  player = "X";
 }
