@@ -25,8 +25,8 @@ cells.forEach((cell) =>
       if (player === "O") cell.style.color = "yellow";
       clickedCell.innerText = player;
       scoreMap[index] = player;
-      checkWinner();
       checkdraw();
+      checkWinner();
       playerChange();
     }
   })
@@ -62,6 +62,7 @@ function checkWinner() {
 }
 function checkdraw() {
   if (scoreMap.includes("") === false) {
+    info.style.color = "whitesmoke";
     info.innerText = "The game has drawn";
     gameActive = false;
   }
