@@ -85,13 +85,24 @@ function checkWinner() {
       if (a === b && b === c) {
         gameActive = false;
         // info.style.color = "red";
-        info.innerText = `🎈🎈🎈!! ${player[ActivePlayer]} !!🎈🎈🎈
-        is the winner`;
+        const winner = document.getElementById("winner");
+        winner.innerText = `🎈🎈🎈!! ${player[ActivePlayer]} !!🎈🎈🎈`;
+        info.innerText = `is the winner`;
 
-        cellBody.style.backgroundColor = `${fontColor[ActivePlayer]}`;
+        // cellBody.style.backgroundColor = `${fontColor[ActivePlayer]}`;
         btnReset.classList.remove("hide");
         // info.style.color = "yellowgreen";
 
+        function cellBackgroundChange() {
+          let color = "green";
+          let cell1 = document.getElementById(`cell${comb[0]}`);
+          let cell2 = document.getElementById(`cell${comb[1]}`);
+          let cell3 = document.getElementById(`cell${comb[2]}`);
+          cell1.style.backgroundColor = color;
+          cell2.style.backgroundColor = color;
+          cell3.style.backgroundColor = color;
+        }
+        cellBackgroundChange();
         break;
       }
     }
@@ -109,6 +120,7 @@ function checkdraw() {
 function reset() {
   cells.forEach((cell) => {
     cell.innerText = "";
+    cell.style.backgroundColor = "rgba(245, 245, 245, 0.466)";
   });
   scoreMap = [1, "", "", "", "", "", "", "", "", ""];
   gameActive = true;
