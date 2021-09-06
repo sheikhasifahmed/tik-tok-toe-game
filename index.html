@@ -5,70 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tik Tok Toe</title>
-    <style>
-      body {
-        background-color: rgb(29, 51, 73);
-      }
-      #info {
-        color: whitesmoke;
-        text-align: center;
-      }
-      #turn {
-        text-align: end;
-        color: wheat;
-      }
-      #turn-player {
-        color: chartreuse;
-      }
-      #cell-body {
-        padding: 10px;
-        background-color: transparent;
-        width: 50%;
-
-        margin: 50px auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 5px;
-        grid-row-gap: 5px;
-      }
-      .cell {
-        width: 100%;
-        height: 100px;
-        /* border: 3px solid lightskyblue; */
-        text-align: center;
-        font-size: 100px;
-        background-color: rgba(245, 245, 245, 0.466);
-        color: orangered;
-      }
-      #btnReset {
-        background-color: whitesmoke;
-        /* color: blue; */
-        display: block;
-        margin: 20px auto;
-        padding: 10px;
-        border-radius: 10px;
-      }
-      #btnReset:hover {
-        background-color: black;
-        color: blanchedalmond;
-      }
-
-      @media (max-width: 600px) {
-        #info {
-          font-size: x-large;
-        }
-        #cell-body {
-          width: 90%;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
   </head>
   <body>
     <h1 id="info"></h1>
-    <h3 id="turn">
-      <span id="turn-tag">Turn for: </span
-      ><span id="turn-player">Player X</span>
-    </h3>
+    <h2 id="turn"><span id="turn-tag"></span><span id="turn-player"></span></h2>
+
     <div id="cell-body">
       <div class="cell" index="1"></div>
       <div class="cell" index="2"></div>
@@ -80,8 +23,38 @@
       <div class="cell" index="8"></div>
       <div class="cell" index="9"></div>
     </div>
-    <button id="btnReset" onclick="reset()">Play Again</button>
+    <div class="buttons">
+      <button id="btn-start" onclick="start()">Start Game</button>
+      <button id="btn-reset" class="hide" onclick="reset()">Play Again</button>
+    </div>
 
-    <script src="checkCheck.js"></script>
+    <div class="overlay blur"></div>
+    <div class="modal">
+      <h3 id="model-info">Enter Player names:</h3>
+      <p>
+        player1:
+        <input
+          type="text"
+          id="player1-name"
+          placeholder="maximum 6 character"
+        />
+      </p>
+
+      <p>
+        Player2:
+        <input
+          type="text"
+          id="player2-name"
+          placeholder="maximum 6 character"
+        />
+      </p>
+
+      <div class="buttons">
+        <button onclick="closeModel()">okay</button
+        ><button onclick="closeModel()">close</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
