@@ -40,6 +40,17 @@ winningCombination = [
 ];
 
 let gameActive = false;
+function getScoresFromLocalStorage() {
+  let scoreStr = localStorage.getItem("score");
+  let scoreObject = JSON.parse(scoreStr);
+
+  for (const [k, v] of Object.entries(scoreObject)) {
+    allScore[k] = v;
+  }
+  return allScore;
+}
+
+getScoresFromLocalStorage();
 
 function start() {
   modal.style.display = "block";
@@ -164,6 +175,16 @@ function playAgain() {
   turnTag.innerText = "Turn for: ";
   playerTurn.innerText = `${player[ActivePlayer]}`;
   btnEnd.classList.add("hide");
+}
+
+function storScoreToLocalStorage() {
+  let scoreObject = {};
+
+  allScore.forEach((element, i) => {
+    scoreObject[i] = element;
+  });
+  let str = JSON.stringify(scoreObject);
+  localStorage.setItem("score", str);
 }
 
 function endGame() {

@@ -24,13 +24,3 @@ function prepScores() {
     scoreList.appendChild(ul);
   }
 }
-
-function storScoreToLocalStorage() {
-  let scoreObject = {};
-
-  allScore.forEach((element, i) => {
-    scoreObject[i] = element;
-  });
-  let str = JSON.stringify(scoreObject);
-  localStorage.setItem("score", str);
-}
