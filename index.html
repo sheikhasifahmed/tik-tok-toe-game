@@ -9,15 +9,29 @@
     <style></style>
   </head>
   <body>
-    <div id="score">
-      <h3 id="score-0"></h3>
-      <h3 id="score-draw"></h3>
-      <h3 id="score-1"></h3>
-    </div>
-    <h1 id="winner" style="color: chartreuse"></h1>
-    <h1 id="info"></h1>
-    <h2 id="turn"><span id="turn-tag"></span><span id="turn-player"></span></h2>
+    <header>
+      <div id="score">
+        <h3 id="score-tag" style="color: chartreuse" class="hide">
+          Current Score:
+        </h3>
+        <h4 id="score-0"></h4>
+        <h4 id="score-1"></h4>
+        <h4 id="score-draw"></h4>
+      </div>
 
+      <div id="preScr" style="margin-top: 20px">
+        <button id="btn-prev-score" onclick="showPrevScore()">
+          Previous Scores
+        </button>
+      </div>
+    </header>
+    <div id="win-turn-info">
+      <h1 id="winner" style="color: chartreuse"></h1>
+      <h1 id="info"></h1>
+      <h2 id="turn">
+        <span id="turn-tag"></span><span id="turn-player"></span>
+      </h2>
+    </div>
     <div id="cell-body">
       <div class="cell" id="cell1" index="1"></div>
       <div class="cell" id="cell2" index="2"></div>
@@ -70,11 +84,16 @@
       </div>
     </div>
     <div class="modal modal-end">
-      <h3 id="final-winner" style="text-align: center"></h3>
-      <h4>Result:</h4>
-      <p id="final-result"></p>
+      <h3 id="final-winner" style="color: blue"></h3>
+      <h4 style="color: red">Result:</h4>
+      <div id="final-result" style="color: darkgreen"></div>
       <button onclick="closeEndModel()">close</button>
     </div>
+    <div class="modal" id="scores-modal">
+      <div id="score-list"></div>
+      <button id="scores-close">close</button>
+    </div>
     <script src="script.js"></script>
+    <script src="Scoring.js"></script>
   </body>
 </html>

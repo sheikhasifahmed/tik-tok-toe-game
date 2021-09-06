@@ -1,18 +1,18 @@
 body {
   background-color: rgb(29, 51, 73);
 }
+header {
+  display: flex;
+  justify-content: space-between;
+}
 h1 {
   color: whitesmoke;
   text-align: center;
 }
-#score {
-  display: flex;
-  justify-content: space-between;
-}
-#score > h3 {
-  margin: 0;
+
+#score h4 {
+  margin: 10px;
   color: white;
-  display: inline;
 }
 #turn {
   text-align: center;

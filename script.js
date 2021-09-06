@@ -18,6 +18,7 @@ const score_draw = document.getElementById("score-draw");
 const btnEnd = document.getElementById("btn-end");
 const finalWinner = document.getElementById("final-winner");
 const finalResult = document.getElementById("final-result");
+const scoreTag = document.getElementById("score-tag");
 
 let score = [0, 0, 0];
 let allScore = [];
@@ -43,7 +44,7 @@ let gameActive = false;
 function start() {
   modal.style.display = "block";
   overlay.style.display = "block";
-
+  scoreTag.classList.remove("hide");
   btnStart.classList.add("hide");
 }
 
@@ -58,6 +59,8 @@ function closeInputModel() {
       turnTag.innerText = "Turn for: ";
       playerTurn.innerText = `${player[ActivePlayer]}`;
       scoreUpdate();
+      player1Input.value = "";
+      player2Input.value = "";
     } else modelInfo.innerText = "Both player cannot have same name!!!";
   } else modelInfo.innerText = "You cannot left the players name empty!!!";
 }
@@ -104,7 +107,7 @@ function checkWinner() {
         gameActive = false;
         // info.style.color = "red";
 
-        winner.innerText = `🎈🎈🎈!! ${player[ActivePlayer]} !!🎈🎈🎈`;
+        winner.innerText = `🎈! ${player[ActivePlayer]} !🎈`;
         info.innerText = `is the winner`;
 
         // cellBody.style.backgroundColor = `${fontColor[ActivePlayer]}`;
@@ -148,7 +151,7 @@ function reset() {
     cell.style.backgroundColor = "rgba(245, 245, 245, 0.466)";
   });
   scoreMap = [1, "", "", "", "", "", "", "", "", ""];
-  gameActive = true;
+
   info.innerText = "";
   winner.innerText = "";
   btnReset.classList.add("hide");
@@ -157,6 +160,7 @@ function reset() {
 
 function playAgain() {
   reset();
+  gameActive = true;
   turnTag.innerText = "Turn for: ";
   playerTurn.innerText = `${player[ActivePlayer]}`;
   btnEnd.classList.add("hide");
@@ -169,7 +173,8 @@ function endGame() {
   finalWinnerCheck();
   scoreReset();
   finalResultShow();
-
+  scoreTag.classList.add("hide");
+  storScoreToLocalStorage();
   ActivePlayer = 0;
 }
 
@@ -177,15 +182,14 @@ function scoreReset() {
   let curScore = {
     [player[0]]: `${score[0]}`,
     [player[1]]: `${score[1]}`,
-    draw: `${score[2]}`,
+    DRAW: `${score[2]}`,
   };
   allScore.push(curScore);
-  console.log(allScore);
+
   score = [0, 0, 0];
   score_0.innerText = ``;
   score_1.innerText = ``;
   score_draw.innerText = ``;
-  console.log(allScore);
 }
 
 function closeEndModel() {
@@ -193,6 +197,7 @@ function closeEndModel() {
   overlay.style.display = "none";
   btnEnd.classList.add("hide");
   btnStart.classList.remove("hide");
+  finalResult.textContent = "";
 }
 
 function finalWinnerCheck() {
@@ -203,16 +208,17 @@ There is no final winner!`;
   } else {
     if (score[0] > score[1]) finWin = player[0];
     if (score[1] > score[0]) finWin = player[1];
-    finalWinner.innerText = `congrates! ${finWin} !
+    finalWinner.innerText = `congrates! 🎈🎈  ${finWin}  🎈🎈 !
   You are the final winner`;
   }
 }
 
 function finalResultShow() {
   let finRes = allScore[allScore.length - 1];
-  // finalResult.innerText = finRes;
-  console.log(finRes);
-  let str = JSON.stringify(finRes);
-  console.log(str);
-  finalResult.innerText = str;
+
+  for (const [k, v] of Object.entries(finRes)) {
+    let p = document.createElement("p");
+    p.innerText = `${k}:  ${v}`;
+    finalResult.appendChild(p);
+  }
 }
