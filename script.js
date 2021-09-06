@@ -37,8 +37,8 @@ function start() {
   btnStart.style.display = "none";
 }
 function closeModel() {
-  player[0] = player1Input.value;
-  player[1] = player2Input.value;
+  player[0] = player1Input.value.toUpperCase();
+  player[1] = player2Input.value.toUpperCase();
   if (player[0] !== "" && player[1] !== "") {
     if (player[0] !== player[1]) {
       modal.style.display = "none";
