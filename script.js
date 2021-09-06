@@ -1,4 +1,5 @@
-const modal = document.querySelector(".modal");
+const modal = document.querySelector(".modal-input");
+const modalEnd = document.querySelector(".modal-end");
 const overlay = document.querySelector(".overlay");
 const info = document.getElementById("info");
 const turnTag = document.getElementById("turn-tag");
@@ -14,7 +15,12 @@ const winner = document.getElementById("winner");
 const score_0 = document.getElementById("score-0");
 const score_1 = document.getElementById("score-1");
 const score_draw = document.getElementById("score-draw");
+const btnEnd = document.getElementById("btn-end");
+const finalWinner = document.getElementById("final-winner");
+const finalResult = document.getElementById("final-result");
+
 let score = [0, 0, 0];
+let allScore = [];
 let player = [];
 let icon = ["X", "O"];
 let fontColor = ["orangered", "yellow"];
@@ -38,9 +44,10 @@ function start() {
   modal.style.display = "block";
   overlay.style.display = "block";
 
-  btnStart.style.display = "none";
+  btnStart.classList.add("hide");
 }
-function closeModel() {
+
+function closeInputModel() {
   player[0] = player1Input.value.toUpperCase();
   player[1] = player2Input.value.toUpperCase();
   if (player[0] !== "" && player[1] !== "") {
@@ -102,6 +109,7 @@ function checkWinner() {
 
         // cellBody.style.backgroundColor = `${fontColor[ActivePlayer]}`;
         btnReset.classList.remove("hide");
+        btnEnd.classList.remove("hide");
         // info.style.color = "yellowgreen";
 
         function cellBackgroundChange() {
@@ -116,7 +124,7 @@ function checkWinner() {
         cellBackgroundChange();
         score[ActivePlayer]++;
         scoreUpdate();
-        return true;
+        btnEnd.classList.remove("hide");
         break;
       }
     }
@@ -130,6 +138,7 @@ function checkdraw() {
     score[2]++;
     scoreUpdate();
     btnReset.classList.remove("hide");
+    btnEnd.classList.remove("hide");
   }
 }
 
@@ -142,9 +151,68 @@ function reset() {
   gameActive = true;
   info.innerText = "";
   winner.innerText = "";
-  turnTag.innerText = "Turn for: ";
-  playerTurn.innerText = `${player[ActivePlayer]}`;
   btnReset.classList.add("hide");
   cellBody.style.backgroundColor = "transparent";
-  // ActivePlayer=0;
+}
+
+function playAgain() {
+  reset();
+  turnTag.innerText = "Turn for: ";
+  playerTurn.innerText = `${player[ActivePlayer]}`;
+  btnEnd.classList.add("hide");
+}
+
+function endGame() {
+  modalEnd.style.display = "block";
+  overlay.style.display = "block";
+  reset();
+  finalWinnerCheck();
+  scoreReset();
+  finalResultShow();
+
+  ActivePlayer = 0;
+}
+
+function scoreReset() {
+  let curScore = {
+    [player[0]]: `${score[0]}`,
+    [player[1]]: `${score[1]}`,
+    draw: `${score[2]}`,
+  };
+  allScore.push(curScore);
+  console.log(allScore);
+  score = [0, 0, 0];
+  score_0.innerText = ``;
+  score_1.innerText = ``;
+  score_draw.innerText = ``;
+  console.log(allScore);
+}
+
+function closeEndModel() {
+  modalEnd.style.display = "none";
+  overlay.style.display = "none";
+  btnEnd.classList.add("hide");
+  btnStart.classList.remove("hide");
+}
+
+function finalWinnerCheck() {
+  let finWin;
+  if (score[0] == score[1]) {
+    finalWinner.innerText = `Scores level!
+There is no final winner!`;
+  } else {
+    if (score[0] > score[1]) finWin = player[0];
+    if (score[1] > score[0]) finWin = player[1];
+    finalWinner.innerText = `congrates! ${finWin} !
+  You are the final winner`;
+  }
+}
+
+function finalResultShow() {
+  let finRes = allScore[allScore.length - 1];
+  // finalResult.innerText = finRes;
+  console.log(finRes);
+  let str = JSON.stringify(finRes);
+  console.log(str);
+  finalResult.innerText = str;
 }

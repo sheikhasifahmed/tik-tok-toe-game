@@ -31,17 +31,23 @@
     </div>
     <div class="buttons">
       <button id="btn-start" onclick="start()">Start Game</button>
-      <button id="btn-reset" class="hide" onclick="reset()">Play Again</button>
+      <button id="btn-end" class="hide" onclick="endGame()">End Game</button>
+      <button id="btn-reset" class="hide" onclick="playAgain()">
+        Play Again
+      </button>
     </div>
 
     <div class="overlay blur"></div>
-    <div class="modal">
-      <h3 id="model-info">Enter Player names:</h3>
+    <div class="modal modal-input">
+      <h3 id="model-info" style="color: red">Enter Player names:</h3>
       <p>
         player1:
         <input
           type="text"
           id="player1-name"
+          minlength="2"
+          maxlength="6"
+          required
           placeholder="maximum 6 character"
         />
       </p>
@@ -51,16 +57,24 @@
         <input
           type="text"
           id="player2-name"
+          minlength="2"
+          maxlength="6"
+          required
           placeholder="maximum 6 character"
         />
       </p>
 
       <div class="buttons">
-        <button onclick="closeModel()">okay</button
-        ><button onclick="closeModel()">close</button>
+        <button type="submit" onclick="closeInputModel()">okay</button>
+        <!-- <button type="submit" onclick="closeModel()">cancel</button> -->
       </div>
     </div>
-
+    <div class="modal modal-end">
+      <h3 id="final-winner" style="text-align: center"></h3>
+      <h4>Result:</h4>
+      <p id="final-result"></p>
+      <button onclick="closeEndModel()">close</button>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
