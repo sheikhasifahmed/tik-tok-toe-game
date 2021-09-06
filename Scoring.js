@@ -25,11 +25,12 @@ function prepScores() {
   }
 }
 
-// function storScoreToLocalStorage() {
-//   let temp = JSON.stringify({});
-//   localStorage.setItem("score", temp);
-//   for (let i; i < allScore; i++) {
-//     let scoreString = JSON.stringify(allScore[i]);
-//     localStorage.setItem(`score[${i}]]`, `${scoreString}`);
-//   }
-// }
+function storScoreToLocalStorage() {
+  let scoreObject = {};
+
+  allScore.forEach((element, i) => {
+    scoreObject[i] = element;
+  });
+  let str = JSON.stringify(scoreObject);
+  localStorage.setItem("score", str);
+}
