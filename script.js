@@ -10,7 +10,11 @@ const modelInfo = document.getElementById("model-info");
 const btnStart = document.getElementById("btn-start");
 const btnReset = document.getElementById("btn-reset");
 const cellBody = document.querySelector("#cell-body");
-
+const winner = document.getElementById("winner");
+const score_0 = document.getElementById("score-0");
+const score_1 = document.getElementById("score-1");
+const score_draw = document.getElementById("score-draw");
+let score = [0, 0, 0];
 let player = [];
 let icon = ["X", "O"];
 let fontColor = ["orangered", "yellow"];
@@ -46,6 +50,7 @@ function closeModel() {
       gameActive = true;
       turnTag.innerText = "Turn for: ";
       playerTurn.innerText = `${player[ActivePlayer]}`;
+      scoreUpdate();
     } else modelInfo.innerText = "Both player cannot have same name!!!";
   } else modelInfo.innerText = "You cannot left the players name empty!!!";
 }
@@ -58,9 +63,9 @@ cells.forEach((cell) =>
       cell.style.color = fontColor[ActivePlayer];
       clickedCell.innerText = icon[ActivePlayer];
       scoreMap[index] = player[ActivePlayer];
-
-      checkdraw();
       checkWinner();
+      checkdraw();
+
       playerChange();
     }
   })
@@ -75,6 +80,12 @@ function playerChange() {
   }
 }
 
+function scoreUpdate() {
+  score_0.innerText = `${player[0]}: ${score[0]}`;
+  score_1.innerText = `${player[1]}: ${score[1]}`;
+  score_draw.innerText = `Draw: ${score[2]}`;
+}
+
 function checkWinner() {
   for (const comb of winningCombination) {
     let a = scoreMap[comb[0]];
@@ -85,7 +96,7 @@ function checkWinner() {
       if (a === b && b === c) {
         gameActive = false;
         // info.style.color = "red";
-        const winner = document.getElementById("winner");
+
         winner.innerText = `🎈🎈🎈!! ${player[ActivePlayer]} !!🎈🎈🎈`;
         info.innerText = `is the winner`;
 
@@ -103,16 +114,21 @@ function checkWinner() {
           cell3.style.backgroundColor = color;
         }
         cellBackgroundChange();
+        score[ActivePlayer]++;
+        scoreUpdate();
+        return true;
         break;
       }
     }
   }
 }
 function checkdraw() {
-  if (scoreMap.includes("") === false) {
+  if (scoreMap.includes("") === false && gameActive === true) {
     info.style.color = "whitesmoke";
     info.innerText = "The game has drawn";
     gameActive = false;
+    score[2]++;
+    scoreUpdate();
     btnReset.classList.remove("hide");
   }
 }
@@ -125,6 +141,7 @@ function reset() {
   scoreMap = [1, "", "", "", "", "", "", "", "", ""];
   gameActive = true;
   info.innerText = "";
+  winner.innerText = "";
   turnTag.innerText = "Turn for: ";
   playerTurn.innerText = `${player[ActivePlayer]}`;
   btnReset.classList.add("hide");

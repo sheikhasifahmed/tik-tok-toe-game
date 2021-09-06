@@ -5,6 +5,15 @@ h1 {
   color: whitesmoke;
   text-align: center;
 }
+#score {
+  display: flex;
+  justify-content: space-between;
+}
+#score > h3 {
+  margin: 0;
+  color: rgba(255, 222, 173, 0.582);
+  display: inline;
+}
 #turn {
   text-align: center;
   color: wheat;
