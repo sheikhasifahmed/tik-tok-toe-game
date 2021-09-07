@@ -110,7 +110,7 @@ function playerChange() {
 function scoreUpdate() {
   score_0.innerText = `${player[0]}: ${score[0]}`;
   score_1.innerText = `${player[1]}: ${score[1]}`;
-  score_draw.innerText = `Draw: ${score[2]}`;
+  score_draw.innerText = `DRAW: ${score[2]}`;
 }
 
 function checkWinner() {
