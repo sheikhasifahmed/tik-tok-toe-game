@@ -5,6 +5,7 @@ const scoreList = document.getElementById("score-list");
 function showPrevScore() {
   scoresModal.style.display = "block";
   overlay.style.display = "block";
+  scoreList.textContent = "";
   prepScores();
 }
 
@@ -14,13 +15,17 @@ scoresClose.addEventListener("click", function () {
 });
 
 function prepScores() {
-  for (const score of allScore) {
-    let ul = document.createElement("ul");
-    for (const [k, v] of Object.entries(score)) {
-      let li = document.createElement("li");
-      li.innerText = `${k}: ${v}`;
-      ul.appendChild(li);
+  for (let i = 1; i <= allScore.length; i++) {
+    let tr = document.createElement("tr");
+    let n = document.createElement("td");
+    n.innerText = i;
+    tr.append(n);
+
+    for (const [k, v] of Object.entries(allScore[i - 1])) {
+      let td = document.createElement("td");
+      td.innerText = `${k}: ${v}`;
+      tr.appendChild(td);
     }
-    scoreList.appendChild(ul);
+    scoreList.appendChild(tr);
   }
 }

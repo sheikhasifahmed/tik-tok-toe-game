@@ -41,8 +41,12 @@ winningCombination = [
 
 let gameActive = false;
 function getScoresFromLocalStorage() {
-  let scoreStr = localStorage.getItem("score");
-  let scoreObject = JSON.parse(scoreStr);
+  let scoreStr;
+  let scoreObject;
+  if (localStorage.score) {
+    scoreStr = localStorage.getItem("score");
+    scoreObject = JSON.parse(scoreStr);
+  } else scoreObject = {};
 
   for (const [k, v] of Object.entries(scoreObject)) {
     allScore[k] = v;
