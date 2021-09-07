@@ -19,13 +19,8 @@
         <h4 id="score-draw"></h4>
       </div>
     </header>
-    <div id="win-turn-info">
-      <h1 id="winner" style="color: chartreuse"></h1>
-      <h1 id="info"></h1>
-      <h2 id="turn">
-        <span id="turn-tag"></span><span id="turn-player"></span>
-      </h2>
-    </div>
+    <h2 id="turn"><span id="turn-tag"></span><span id="turn-player"></span></h2>
+
     <div id="cell-body">
       <div class="cell" id="cell1" index="1"></div>
       <div class="cell" id="cell2" index="2"></div>
@@ -56,15 +51,12 @@
     <!--..................................................
   ............................... game win modal  -->
 
-    <!-- <div class="modal" id="game-win-modal">
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quas
-        consectetur odio repellat. Ducimus obcaecati libero consectetur dolores
-        exercitationem minima dolorem eaque ipsam id deserunt, natus,
-        perspiciatis explicabo magni impedit.
-      </p>
+    <div class="modal" id="game-win-modal">
+      <h2 id="winner" style="color: royalblue"></h2>
+      <h2 id="info"></h2>
+
       <button onclick="closeGameWin()">Close</button>
-    </div> -->
+    </div>
 
     <!-- ..............................................................
   .....................overlay div here .................... -->
@@ -111,9 +103,9 @@
       ............... final result modal here ............... -->
 
     <div class="modal modal-end">
-      <h3 id="final-winner" style="color: blue"></h3>
-      <h4 style="color: red">Result:</h4>
-      <div id="final-result" style="color: darkgreen"></div>
+      <h2 id="final-winner" style="color: blue"></h3>
+      <h2 style="color: darkgreen;">Result:</h2>
+      <div id="final-result" style="background-color: pink;"></div>
       <button onclick="closeEndModel()">close</button>
     </div>
 
@@ -122,7 +114,7 @@
 
     <div class="modal" id="scores-modal">
       <div style="height: 300px; overflow: scroll; padding: 20px">
-        <h2><u>Previous Scores</u></h2>
+        <h2 style="color: royalblue; border: 1px solid gray">Recent scores</h2>
         <table id="score-list"></table>
       </div>
       <button id="scores-close">close</button>

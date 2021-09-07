@@ -21,6 +21,8 @@ const finalResult = document.getElementById("final-result");
 const scoreTag = document.getElementById("score-tag");
 const btnPrevScr = document.getElementById("btn-prev-score");
 
+const gameWinModal = document.getElementById("game-win-modal");
+
 let score = [0, 0, 0];
 let allScore = [];
 let player = [];
@@ -99,6 +101,19 @@ cells.forEach((cell) =>
   })
 );
 
+/*..............................................
+.................. game win modal...............*/
+
+function ShowGameWin() {
+  overlay.style.display = "block";
+  gameWinModal.style.display = "block";
+}
+
+function closeGameWin() {
+  overlay.style.display = "none";
+  gameWinModal.style.display = "none";
+}
+
 function playerChange() {
   ActivePlayer == 0 ? (ActivePlayer = 1) : (ActivePlayer = 0);
   if (gameActive === true) playerTurn.innerText = `${player[ActivePlayer]}`;
@@ -124,9 +139,10 @@ function checkWinner() {
       if (a === b && b === c) {
         gameActive = false;
         // info.style.color = "red";
+        ShowGameWin();
+        winner.innerText = `🎈🎈   ${player[ActivePlayer]}!!   🎈🎈`;
 
-        winner.innerText = `🎈! ${player[ActivePlayer]} !🎈`;
-        info.innerText = `is the winner`;
+        info.innerText = `Congrates!! You are the 🥇🥇 winner 🥇🥇 of this Match!`;
 
         // cellBody.style.backgroundColor = `${fontColor[ActivePlayer]}`;
         btnReset.classList.remove("hide");
@@ -153,8 +169,9 @@ function checkWinner() {
 }
 function checkdraw() {
   if (scoreMap.includes("") === false && gameActive === true) {
-    info.style.color = "whitesmoke";
-    info.innerText = "The game has drawn";
+    ShowGameWin();
+
+    info.innerText = `Ops! 🤔 This match is a 🤝 draw 🤝`;
     gameActive = false;
     score[2]++;
     scoreUpdate();
@@ -233,13 +250,15 @@ function closeEndModel() {
 function finalWinnerCheck() {
   let finWin;
   if (score[0] == score[1]) {
-    finalWinner.innerText = `Scores level!
-There is no final winner!`;
+    finalWinner.innerText = `Ops! 🤔  Scores level!
+There is no final winner! 
+Final Result: 🤝Draw🤝`;
   } else {
     if (score[0] > score[1]) finWin = player[0];
     if (score[1] > score[0]) finWin = player[1];
-    finalWinner.innerText = `congrates! 🎈🎈  ${finWin}  🎈🎈 !
-  You are the final winner`;
+    finalWinner.innerText = ` 🎈🎈   ${finWin}!!   🎈🎈 
+
+    Congrates!! You are the 🥇🥇 Final winner 🥇🥇 of this Game!`;
   }
 }
 
