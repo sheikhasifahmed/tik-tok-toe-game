@@ -128,7 +128,7 @@ table tr:nth-child(odd) {
   /* color: aliceblue; */
 }
 table tr:nth-child(even) {
-  background-color: rgba(65, 105, 225, 0.507);
+  background-color: lightcoral;
   /* color: aliceblue; */
 }
 
