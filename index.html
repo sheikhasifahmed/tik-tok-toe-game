@@ -11,18 +11,12 @@
   <body>
     <header>
       <div id="score">
-        <h3 id="score-tag" style="color: chartreuse" class="hide">
-          Current Score:
-        </h3>
+        <h4 id="score-tag" style="color: chartreuse" class="hide">
+          CURRENT SCORE:
+        </h4>
         <h4 id="score-0"></h4>
         <h4 id="score-1"></h4>
         <h4 id="score-draw"></h4>
-      </div>
-
-      <div id="preScr" style="margin-top: 20px">
-        <button id="btn-prev-score" onclick="showPrevScore()">
-          Previous Scores
-        </button>
       </div>
     </header>
     <div id="win-turn-info">
@@ -44,6 +38,9 @@
       <div class="cell" id="cell9" index="9"></div>
     </div>
     <div class="buttons">
+      <button id="btn-prev-score" onclick="showPrevScore()">
+        Previous Scores
+      </button>
       <button id="btn-start" onclick="start()">Start Game</button>
       <button id="btn-end" class="hide" onclick="endGame()">End Game</button>
       <button id="btn-reset" class="hide" onclick="playAgain()">

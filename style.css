@@ -1,17 +1,18 @@
 body {
   background-color: rgb(29, 51, 73);
 }
-header {
-  display: flex;
-  justify-content: space-between;
-}
+
 h1 {
   color: whitesmoke;
   text-align: center;
 }
+#score {
+  display: flex;
+  justify-content: space-between;
+}
 
 #score h4 {
-  margin: 10px;
+  /* margin: 10px; */
   color: white;
 }
 #turn {
@@ -114,13 +115,20 @@ button:hover {
 
 table {
   width: 100%;
-  /* border-collapse: collapse; */
-  color: darkblue;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  /* color: darkblue; */
 }
-table,
-td,
-th {
-  border: 1px solid black;
+table td {
+  /* border: 1px solid black; */
+}
+table tr:nth-child(odd) {
+  background-color: gray;
+  /* color: aliceblue; */
+}
+table tr:nth-child(even) {
+  background-color: lightcoral;
+  /* color: aliceblue; */
 }
 
 @media (max-width: 600px) {

@@ -19,6 +19,7 @@ const btnEnd = document.getElementById("btn-end");
 const finalWinner = document.getElementById("final-winner");
 const finalResult = document.getElementById("final-result");
 const scoreTag = document.getElementById("score-tag");
+const btnPrevScr = document.getElementById("btn-prev-score");
 
 let score = [0, 0, 0];
 let allScore = [];
@@ -61,6 +62,7 @@ function start() {
   overlay.style.display = "block";
   scoreTag.classList.remove("hide");
   btnStart.classList.add("hide");
+  btnPrevScr.classList.add("hide");
 }
 
 function closeInputModel() {
@@ -200,6 +202,7 @@ function endGame() {
   finalResultShow();
   scoreTag.classList.add("hide");
   storScoreToLocalStorage();
+  btnPrevScr.classList.remove("hide");
   ActivePlayer = 0;
 }
 
