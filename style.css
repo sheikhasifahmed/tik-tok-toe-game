@@ -6,9 +6,7 @@ h1 {
   color: whitesmoke;
   text-align: center;
 }
-#win-turn-info > h1 {
-  margin: 0;
-}
+
 #score {
   display: flex;
   justify-content: space-between;
@@ -130,7 +128,7 @@ table tr:nth-child(odd) {
   /* color: aliceblue; */
 }
 table tr:nth-child(even) {
-  background-color: lightcoral;
+  background-color: rgba(65, 105, 225, 0.507);
   /* color: aliceblue; */
 }
 

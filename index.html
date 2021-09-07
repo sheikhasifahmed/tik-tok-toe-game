@@ -37,6 +37,10 @@
       <div class="cell" id="cell8" index="8"></div>
       <div class="cell" id="cell9" index="9"></div>
     </div>
+
+    <!-- ..................................................
+      .................buttons div here.................  -->
+
     <div class="buttons">
       <button id="btn-prev-score" onclick="showPrevScore()">
         Previous Scores
@@ -46,9 +50,31 @@
       <button id="btn-reset" class="hide" onclick="playAgain()">
         Play Again
       </button>
+      <!-- <button onclick="ShowGameWin()">Game win</button> -->
     </div>
 
+    <!--..................................................
+  ............................... game win modal  -->
+
+    <!-- <div class="modal" id="game-win-modal">
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quas
+        consectetur odio repellat. Ducimus obcaecati libero consectetur dolores
+        exercitationem minima dolorem eaque ipsam id deserunt, natus,
+        perspiciatis explicabo magni impedit.
+      </p>
+      <button onclick="closeGameWin()">Close</button>
+    </div> -->
+
+    <!-- ..............................................................
+  .....................overlay div here .................... -->
+
     <div class="overlay blur"></div>
+
+    <!--......................................................
+  ....................... input modal here .............
+......................................................... -->
+
     <div class="modal modal-input">
       <h3 id="model-info" style="color: red">Enter Player names:</h3>
       <p>
@@ -80,19 +106,30 @@
         <!-- <button type="submit" onclick="closeModel()">cancel</button> -->
       </div>
     </div>
+
+    <!--......................................................
+      ............... final result modal here ............... -->
+
     <div class="modal modal-end">
       <h3 id="final-winner" style="color: blue"></h3>
       <h4 style="color: red">Result:</h4>
       <div id="final-result" style="color: darkgreen"></div>
       <button onclick="closeEndModel()">close</button>
     </div>
+
+    <!--  .......................................................
+  .......................previous scores modal here ...... -->
+
     <div class="modal" id="scores-modal">
       <div style="height: 300px; overflow: scroll; padding: 20px">
-        <h3 style="color: red">Previous Scores</h3>
+        <h3 style="color: red">10 Recent Scores</h3>
         <table id="score-list"></table>
       </div>
       <button id="scores-close">close</button>
     </div>
+
+    <!-- score modal end  -->
+
     <script src="script.js"></script>
     <script src="Scoring.js"></script>
   </body>

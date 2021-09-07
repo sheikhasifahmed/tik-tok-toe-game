@@ -44,6 +44,7 @@ let gameActive = false;
 function getScoresFromLocalStorage() {
   let scoreStr;
   let scoreObject;
+
   if (localStorage.score) {
     scoreStr = localStorage.getItem("score");
     scoreObject = JSON.parse(scoreStr);
@@ -212,7 +213,8 @@ function scoreReset() {
     [player[1]]: `${score[1]}`,
     DRAW: `${score[2]}`,
   };
-  allScore.push(curScore);
+  allScore.unshift(curScore);
+  allScore = allScore.slice(0, 10);
 
   score = [0, 0, 0];
   score_0.innerText = ``;
@@ -242,7 +244,7 @@ There is no final winner!`;
 }
 
 function finalResultShow() {
-  let finRes = allScore[allScore.length - 1];
+  let finRes = allScore[0];
 
   for (const [k, v] of Object.entries(finRes)) {
     let p = document.createElement("p");
